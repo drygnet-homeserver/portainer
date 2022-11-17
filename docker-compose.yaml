@@ -1,0 +1,26 @@
+# docker-compose.yml 
+version: '3.9'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:z
+      - portainer_data:/data
+    ports:
+      - 9000:9000
+    environment:
+      - VIRTUAL_HOST=portainer.local,portainer.home.dryg.net
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+networks:
+  home:
+    external: true
+
+volumes:
+  portainer_data:
