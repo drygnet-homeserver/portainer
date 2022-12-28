@@ -1,2 +1,2 @@
 # portainer
-to manage the containers from a browser
+to manage the containers from a browser.
